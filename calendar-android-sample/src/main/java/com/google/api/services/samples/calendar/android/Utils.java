@@ -23,6 +23,9 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Common utilities.
  * 
@@ -89,5 +92,38 @@ public class Utils {
       return resources.getString(R.string.error);
     }
     return resources.getString(R.string.error_format, message);
+  }
+
+  public static ArrayList<Lunar> getRepeatLunar(String date){
+    ArrayList<Lunar> birth = new ArrayList<>();
+
+    String[] split = date.split("-");
+    if (split.length< 4) {
+      return null;
+    }
+    String year = split[0];
+    String month = split[1];
+    String day = split[2];
+    String repeat = split[3];
+
+    Solar solar = new Solar();
+
+    solar.setSolarDay(Integer.valueOf(day));
+    solar.setSolarMonth(Integer.valueOf(month));
+    solar.setSolarYear(Integer.valueOf(year));
+    solar.setRepeat(Integer.valueOf(repeat));
+    Lunar lunar = LunarSolarConverter.SolarToLunar(solar);
+    birth.add(lunar);
+    int years = Integer.valueOf(year);
+    for (int i = 0; i < Integer.valueOf(repeat); i++) {
+      years ++ ;
+      solar.setSolarDay(Integer.valueOf(day));
+      solar.setSolarMonth(Integer.valueOf(month));
+      solar.setSolarYear(years);
+      Lunar lunars = LunarSolarConverter.SolarToLunar(solar);
+      birth.add(lunars);
+    }
+
+    return birth;
   }
 }

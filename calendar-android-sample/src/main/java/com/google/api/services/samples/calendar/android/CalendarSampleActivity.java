@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -131,6 +132,10 @@ adb shell setprop log.tag.HttpTransport DEBUG
     client = new com.google.api.services.calendar.Calendar.Builder(
         transport, jsonFactory, credential).setApplicationName("Google-CalendarAndroidSample/1.0")
         .build();
+
+
+
+
   }
 
   void showGooglePlayServicesAvailabilityErrorDialog(final int connectionStatusCode) {
@@ -203,7 +208,18 @@ adb shell setprop log.tag.HttpTransport DEBUG
           Calendar calendar = new Calendar();
           calendar.setSummary(data.getStringExtra("summary"));
           String id = data.getStringExtra("id");
-          if (id == null) {
+          Log.d(AddOrEditCalendarActivity.TAG, "summary = " + data.getStringExtra("summary") + " id = " + id );
+          ArrayList<Lunar> repeatLunar = Utils.getRepeatLunar(data.getStringExtra("summary"));
+/*          for (int i = 0; i < repeatLunar.size(); i++) {
+            System.out.println("year = " + repeatLunar.get(i).getLunarYear());
+            System.out.println("day = " + repeatLunar.get(i).getLunarDay());
+            System.out.println("month = " + repeatLunar.get(i).getLunarMonth());
+            System.out.println("repeat = " + repeatLunar.get(i).getRepeat());
+          }*/
+          System.out.println("length = " + data.getStringExtra("summary").split("-").length);
+          if ((data.getStringExtra("summary").split("-").length) == 4){
+            new AsyncInsertCalendar(this, calendar,repeatLunar).execute();
+          }else if (id == null) {
             new AsyncInsertCalendar(this, calendar).execute();
           } else {
             calendar.setId(id);

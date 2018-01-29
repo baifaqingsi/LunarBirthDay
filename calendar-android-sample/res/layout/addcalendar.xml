@@ -50,6 +50,7 @@
             android:id="@+id/summaryText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:digits="1234567890-"
             android:layout_weight="1"
             android:hint="@string/summary_hint" >
         </EditText>

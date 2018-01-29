@@ -16,11 +16,13 @@ package com.google.api.services.samples.calendar.android;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
+import com.google.api.services.calendar.model.Calendar;
 
 import android.os.AsyncTask;
 import android.view.View;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Asynchronous task that also takes care of common needs, such as displaying progress,
@@ -34,6 +36,7 @@ abstract class CalendarAsyncTask extends AsyncTask<Void, Void, Boolean> {
   final CalendarModel model;
   final com.google.api.services.calendar.Calendar client;
   private final View progressBar;
+  ArrayList<Lunar> repeatLunar;
 
   CalendarAsyncTask(CalendarSampleActivity activity) {
     this.activity = activity;
@@ -41,6 +44,15 @@ abstract class CalendarAsyncTask extends AsyncTask<Void, Void, Boolean> {
     client = activity.client;
     progressBar = activity.findViewById(R.id.title_refresh_progress);
   }
+
+  public CalendarAsyncTask(CalendarSampleActivity activity,ArrayList<Lunar> repeatLunar) {
+    this.activity = activity;
+    model = activity.model;
+    client = activity.client;
+    progressBar = activity.findViewById(R.id.title_refresh_progress);
+    this.repeatLunar = repeatLunar;
+  }
+
 
   @Override
   protected void onPreExecute() {

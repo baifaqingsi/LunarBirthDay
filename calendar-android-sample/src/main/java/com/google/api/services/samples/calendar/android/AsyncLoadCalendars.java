@@ -14,9 +14,15 @@
 
 package com.google.api.services.samples.calendar.android;
 
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.CalendarList;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventAttendee;
+import com.google.api.services.calendar.model.EventDateTime;
+import com.google.api.services.calendar.model.EventReminder;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Asynchronously load the calendars.
@@ -33,6 +39,10 @@ class AsyncLoadCalendars extends CalendarAsyncTask {
   protected void doInBackground() throws IOException {
     CalendarList feed = client.calendarList().list().setFields(CalendarInfo.FEED_FIELDS).execute();
     model.reset(feed.getItems());
+
+
+
+
   }
 
   static void run(CalendarSampleActivity calendarSample) {

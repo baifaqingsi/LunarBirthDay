@@ -16,6 +16,7 @@ package com.google.api.services.samples.calendar.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class AddOrEditCalendarActivity extends Activity {
 
   private EditText summaryEditText;
   private String id;
+  public static final  String TAG = "hc";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,10 @@ public class AddOrEditCalendarActivity extends Activity {
       }
       t.putExtra("summary", summary);
       setResult(Activity.RESULT_OK, t);
+      Log.d(TAG, "onSave: RESULT_OK");
     } else {
       setResult(Activity.RESULT_CANCELED);
+      Log.d(TAG, "onSave: RESULT_CANCELED");
     }
     finish();
   }

@@ -20,7 +20,7 @@
     <string name="accounts">Accounts</string>
     <string name="description_add">Add Calendar</string>
     <string name="summary">Title</string>
-    <string name="summary_hint">Enter the calendar title</string>
+    <string name="summary_hint">请按照此格式填写：年-月-日-重复次数</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="icon_desc">Application icon</string>
