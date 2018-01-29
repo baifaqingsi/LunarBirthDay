@@ -1,6 +1,6 @@
 # Samples of using the [Google APIs Client Library for Java](https://github.com/google/google-api-java-client)
 For a complete list of Google APIs, visit https://developers.google.com/api-client-library/java/apis/
-# 此项目运行需要去G API注册邮箱以及指定包名才可以使用 详情请见：
+# 此项目运行需要去Google API注册邮箱以及指定包名才可以使用 详情请见：
 https://developers.google.com/google-apps/calendar/quickstart/android
 
 # 相关api使用介绍地址如下
